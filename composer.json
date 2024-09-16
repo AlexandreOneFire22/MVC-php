@@ -1,0 +1,16 @@
+{
+    "name": "gauthiera/mvc-php",
+    "type": "project",
+    "authors": [
+        {
+            "name": "GAUTHIER Alexandre",
+            "email": "alexgau70@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "App\\" : "src/"
+        }
+    }
+}
