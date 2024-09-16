@@ -13,7 +13,7 @@ $db = new PDO("mysql:host={$dbConfig['host']};dbname={$dbConfig['dbname']}",$dbC
 
 // Mise en place du routing
 
-$route = $_GET['route'];
+$route = $_GET['route'] ?? 'accueil' ;
 
 if ($route === "accueil") {
     // Créer un objet AccueilController
