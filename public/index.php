@@ -32,7 +32,13 @@ switch ($route){
         break;
 
     case "livre-list" :
-        $livreControleur = new \App\Controllers\LivreController($db);
+
+        // $livreDao est une dépendance de LivreController
+        $livreDao = new \App\Dao\LivreDAO($db);
+
+        // Injecter la dépendance $livreDao dans l'objet LivreController
+        $livreControleur = new \App\Controllers\LivreController($livreDao);
+
         $livreControleur->list();
 
         break;

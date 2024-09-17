@@ -7,11 +7,11 @@ use App\Dao\LivreDAO;
 class LivreController
 {
 
-    private \PDO $db;
+    private LivreDAO $livreDao; //Dépendance
 
-    public function __construct(\PDO $db)
+    public function __construct(LivreDAO $dao)
     {
-        $this->db = $db;
+        $this->livreDao = $dao;
     }
 
     //Lister l'ensemble des livres
@@ -21,9 +21,7 @@ class LivreController
 
         //Fait appelle au Modèle afin de récupérer les données dans la BD
 
-        $livreDao = new LivreDAO($this->db);
-
-        $livres = $livreDao->selectAll();
+        $livres = $this->livreDao->selectAll();
 
         //Fait appel à la Vue afin de renvoyer la page
 
