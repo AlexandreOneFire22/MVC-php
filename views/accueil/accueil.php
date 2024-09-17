@@ -13,5 +13,7 @@
 
     <h2> accèder à la liste des livres : <a href="index.php?route=livre-list"> Liste des livres</a></h2>
 
+    <h2> créer un livre : <a href="index.php?route=livre-add"> Formulaire</a></h2>
+
 </body>
 </html>

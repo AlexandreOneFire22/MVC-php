@@ -14,7 +14,7 @@
     <ul>
 
     <?php foreach ($livres as $livre): ?>
-        <li> <?= $livre->getTitre() ?> </li>
+        <li> <?= $livre->getTitre() ?> <a href="index.php?route=livre-details&id=<?=$livre->getId()?>">Détails</a></li>
     <?php endforeach; ?>
 
     </ul>
