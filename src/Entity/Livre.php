@@ -14,6 +14,21 @@ class Livre
     private int $nbPages;
 
     /**
+     * @param int $id
+     * @param string $titre
+     * @param string $auteur
+     * @param int $nbPages
+     */
+    public function __construct(int $id, string $titre, string $auteur, int $nbPages)
+    {
+        $this->id = $id;
+        $this->titre = $titre;
+        $this->auteur = $auteur;
+        $this->nbPages = $nbPages;
+    }
+
+
+    /**
      * @return int
      */
     public function getId(): int

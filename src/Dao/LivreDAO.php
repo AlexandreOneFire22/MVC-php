@@ -2,6 +2,8 @@
 
 namespace App\Dao;
 
+use App\Entity\Livre;
+
 class LivreDAO
 {
 
@@ -29,6 +31,11 @@ class LivreDAO
         // Mapping relationnel vers objet
 
         $livres =[];
+
+        foreach ($livresBD as $livre){
+            $livres [] = new Livre($livre["id_livre"],$livre["titre_livre"],$livre["auteur_livre"],$livre["nombre_page_livre"]);
+        }
+
 
 
 
