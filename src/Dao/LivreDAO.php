@@ -38,14 +38,20 @@ class LivreDAO
         return $livres;
     }
 
-    public function selectOne($id) : Livre {
+    public function selectById(int $id) : ?Livre {
 
-        $requete = $this->db->query("SELECT * FROM livre WHERE id_livre = $id");
-        $livreBD = $requete->fetchAll(\PDO::FETCH_ASSOC);
+        $requete = $this->db->prepare("SELECT * FROM livre WHERE id_livre = :id");
 
+        $requete->execute([':id'=> $id]);
+
+        $livreBD = $requete->fetch(\PDO::FETCH_ASSOC);
+
+        if (!$livreBD){
+            return null;
+        }
         // Mapping relationnel vers objet
 
-        $livre = new Livre($livreBD[0]["id_livre"],$livreBD[0]["titre_livre"],$livreBD[0]["auteur_livre"],$livreBD[0]["nombre_page_livre"]);
+        $livre = new Livre($livreBD["id_livre"],$livreBD["titre_livre"],$livreBD["auteur_livre"],$livreBD["nombre_page_livre"]);
         return $livre;
     }
 

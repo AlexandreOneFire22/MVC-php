@@ -55,15 +55,21 @@ switch ($route){
 
     case "livre-details" :
 
-        // $livreDao est une dépendance de LivreController
-        $livreDao = new \App\Dao\LivreDAO($db);
+        $id = $_GET['id'] ?? null ;
 
-        // Injecter la dépendance $livreDao dans l'objet LivreController
-        $livreControleur = new \App\Controllers\LivreController($livreDao);
+        if ($id){
 
-        $id = $_GET['id'] ?? 'erreur' ;
+            // $livreDao est une dépendance de LivreController
+            $livreDao = new \App\Dao\LivreDAO($db);
 
-        $livreControleur->details($id);
+            // Injecter la dépendance $livreDao dans l'objet LivreController
+            $livreControleur = new \App\Controllers\LivreController($livreDao);
+
+            $livreControleur->details($id);
+
+        }else{
+            echo "la requête n'est pas valide";
+        }
 
         break;
 

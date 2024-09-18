@@ -33,11 +33,22 @@ class LivreController
 
         //Fait appelle au Modèle afin de récupérer les données dans la BD
 
-        $livre = $this->livreDao->selectOne($id);
+        $livre = $this->livreDao->selectById($id);
 
-        //Fait appel à la Vue afin de renvoyer la page
+        if ($livre){
 
-        require __DIR__."/../../views/livre/details.php";
+            //Fait appel à la Vue afin de renvoyer la page
+
+            require __DIR__."/../../views/livre/details.php";
+
+        }else{
+
+            header("HTTP/1.0 404 Not Found");
+
+        }
+
+
+
 
     }
 
