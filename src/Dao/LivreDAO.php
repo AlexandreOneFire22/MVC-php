@@ -9,6 +9,8 @@ class LivreDAO
 
     private \PDO $db;
 
+    private array $erreurs = [];
+
     /**
      * @param \PDO $db
      */
@@ -55,17 +57,33 @@ class LivreDAO
         return $livre;
     }
 
-    public function add($titre,$nbPages,$auteur):array{
+    public function addLivre(Livre $livre):void{
 
         $titre = str_replace("'","\'",$titre);
         $auteur = str_replace("'","\'",$auteur);
 
 
-        $requete = $this->db->query("INSERT INTO `livre` (`id_livre`,`titre_livre`, `nombre_page_livre`, `auteur_livre`) 
+        $this->db->query("INSERT INTO `livre` (`id_livre`,`titre_livre`, `nombre_page_livre`, `auteur_livre`) 
             VALUES (NULL, '$titre', '$nbPages', '$auteur');");
 
-        return $requete->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public function addErreur($nomErreur,$descriptionErreur):void {
+
+        $this->erreurs [$nomErreur] = $descriptionErreur;
+
+    }
+
+    public function getErreur ():?array{
+
+        if ($this->erreurs == []){
+            return null;
+        }else{
+            return $this->erreurs;
+        }
+    }
+
+
 
 }
 

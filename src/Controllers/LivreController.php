@@ -52,15 +52,32 @@ class LivreController
 
     }
 
-    public function add(){
+    public function addLivre(){
 
-        //Fait appelle au Modèle afin de récupérer les données dans la BD
+        if ($_SERVER["REQUEST_METHOD"] === "POST"){
 
-        //$livres = $this->livreDao->selectAll();
+            if (empty($titre)) {
+                $this->livreDao->addErreur("titre","Le titre est obligatoire.");
+            }
+            if (empty($auteur)) {
+                $this->livreDao->addErreur("auteur","Le nom de l'auteur est obligatoire.");
+            }
+            if (empty($nbPages)) {
+                $this->livreDao->addErreur("nbPages","Le nombre de pages est obligatoire.");
+            }
 
-        //Fait appel à la Vue afin de renvoyer la page
+            if ($this->livreDao->getErreur()){
+                $this->livreDao->addLivre($_POST["titre"],$_POST["nbPages"],$_POST["auteur"]);
+                require __DIR__."/../../views/accueil/accueil.php";
+            }else{
+                require __DIR__."/../../views/livre/addLivre.php";
+            }
 
-        require __DIR__."/../../views/livre/addLivre.php";
+        }else{
+
+            require __DIR__."/../../views/livre/addLivre.php";
+
+        }
 
     }
 

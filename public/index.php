@@ -81,7 +81,7 @@ switch ($route){
         // Injecter la dépendance $livreDao dans l'objet LivreController
         $livreControleur = new \App\Controllers\LivreController($livreDao);
 
-        $livreControleur->add();
+        $livreControleur->addLivre();
 
         break;
 
