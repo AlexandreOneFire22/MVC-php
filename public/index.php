@@ -68,7 +68,7 @@ switch ($route){
             $livreControleur->details($id);
 
         }else{
-            echo "La requête n'est pas valide";
+            echo "La requête n'est pas valide.";
         }
 
         break;
